@@ -1,32 +1,30 @@
-name: Build and Deploye 
+name: Build and Deploy
 
-on: ["push","pull_request"]
+on: ["push", "pull_request"]
 jobs:
   job1:
     env:
-      DATABASE_HOSTNAME : localhost
-      DATABASE_PORT : 5432
-      DATABASE_PASSWORD : 12345
-      DATABASE_NAME : fastapi
-      DATABASE_USERNAME : postgres
-      SECRET_KEY : "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
-      ALGORITHM : "HS256"
-      ACCESS_TOKEN_EXPIRE_MINUTES : 30
+      DATABASE_HOSTNAME: localhost
+      DATABASE_PORT: 5432
+      DATABASE_PASSWORD: 12345
+      DATABASE_NAME: fastapi
+      DATABASE_USERNAME: postgres
+      SECRET_KEY: "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
+      ALGORITHM: "HS256"
+      ACCESS_TOKEN_EXPIRE_MINUTES: 30
     runs-on: ubuntu-latest
     steps:
-      - name: pulling git repo
+      - name: Pull Git Repository
         uses: actions/checkout@v2
-      - name: say hai to ganesh
-        run: echo "Hello ganesh"
-      - name: Install Python version 3.11
-        uses: actions/checkout@v2
-        with: 
+      - name: Say hi to Ganesh
+        run: echo "Hello Ganesh"
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v2
+        with:
           python-version: "3.11"
       - name: Upgrade pip
         run: python -m pip install --upgrade pip
-      - name: Installing Depedencies
+      - name: Install Dependencies
         run: pip install -r requirements.txt
-      - name: tests with pytest
-        run: |
-          pip install pytest
-          pytest
+      - name: Run Tests with pytest
+        run: pytest
