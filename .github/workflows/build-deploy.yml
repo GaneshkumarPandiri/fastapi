@@ -9,3 +9,11 @@ jobs:
         uses: actions/checkout@v2
       - name: say hai to ganesh
         run: echo "Hello ganesh"
+      - name: Install Python version 3.11
+        uses: actions/checkout@v2
+        with: 
+          python-version: "3.11"
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+      - name: Installing Depedencies
+        run: pip install -r requirements.txt
